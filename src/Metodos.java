@@ -1,6 +1,5 @@
 
 //import java.util.ArrayList;
-
 public class Metodos {
 
 //    private static final String nombres[] = {"administrador", "manolo", "antonio", "roberto", "jaime"};
@@ -24,9 +23,18 @@ public class Metodos {
         return BaseDatos.consultar(user, contra);
     }
 
-    public static boolean verificarDobleContra(String contra1, String contra2){
+    public static boolean verificarDobleContra(String contra1, String contra2) {
         return contra1.equals(contra2);
     }
+
+    public static boolean verificarCorreo(String correo) {
+        if (correo.matches("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+")) {
+            return true;
+        }
+        return false;
+    }
     
-    
+    public static boolean verificarDuplicado(String user) {
+        return BaseDatos.consultar(user);
+    }
 }
