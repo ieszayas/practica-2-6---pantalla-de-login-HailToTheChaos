@@ -521,34 +521,33 @@ public class Pantalla_login extends javax.swing.JFrame {
 
     private void boton_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_agregarActionPerformed
         Usuario user = null;
+        
         String usuario = textField_agregarUsuario.getText();
         String contraseña = textField_agregarContra.getText();
         String nombre = textField_nombre.getText();
         String apellidos = textField_apellidos.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        String fecha = sdf.format(dateChooser_fecha.getDate());        
+        String fecha = crearFecha(dateChooser_fecha.getDate());
         String correo = textField_correo.getText();
 
         boolean masDatos = false;
 
-        if (correo != null || correo.equals("")) {
+        if (correo != null || fecha != null || apellidos != null || nombre != null) {
             masDatos = true;
         }
 
-        if (verificaciones() && verificacionesOpcionales()) {
+        if (verificaciones()) {
             if (masDatos) {
-                //Crea el user y se lo pasa a la base de datos
-                user = new Usuario(usuario, contraseña, nombre, apellidos, fecha, correo);
+                if (verificacionesOpcionales()) {
+                    //Crea el user y se lo pasa a la base de datos
+                    user = new Usuario(usuario, contraseña, nombre, apellidos, fecha, correo);
+                    guardar(user);
+                } else {
+                    JOptionPane.showMessageDialog(frame_agregar, "Los datos opcionales no son correctos.", "Error datos opcionales", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 user = new Usuario(usuario, contraseña);
-            }
-
-            if (BaseDatos.guardar(user)) {
-                JOptionPane.showMessageDialog(frame_agregar, "El usuario ha sido creado");
-                frame_agregar.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(frame_agregar, "No se ha podido agregar al usuario.", "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
-            }
+                guardar(user);
+            }            
         }
     }//GEN-LAST:event_boton_agregarActionPerformed
 
@@ -557,13 +556,14 @@ public class Pantalla_login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void boton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_aceptarActionPerformed
-        if(BaseDatos.modificarContraseña(textField_usuario.getText(), textField_nuevaContra.getText())){
+        if (BaseDatos.modificarContraseña(textField_usuario.getText(), textField_nuevaContra.getText())) {
             JOptionPane.showMessageDialog(frame_agregar, "La contraseña ha sido modificada");
             frame_cambiarContra.dispose();
         }
     }//GEN-LAST:event_boton_aceptarActionPerformed
 
     private void boton_cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cambiarActionPerformed
+        frame_principal.setVisible(false);
         frame_cambiarContra.setVisible(true);
     }//GEN-LAST:event_boton_cambiarActionPerformed
 
@@ -577,12 +577,12 @@ public class Pantalla_login extends javax.swing.JFrame {
         String contraseña2 = textField_agregarContra2.getText();
 
         //Verifica que no esten los campos vacios (obligatorios)
-        if (usuario.equals(" ") || usuario == null) {
+        if (usuario.equals("") || usuario == null) {
             JOptionPane.showMessageDialog(frame_agregar, "El usuario no puede estar vacio.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
-        if (contraseña.equals(" ") || contraseña == null) {
+        if (contraseña.equals("") || contraseña == null) {
             JOptionPane.showMessageDialog(frame_agregar, "La contraseña no puede estar vacia.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -605,7 +605,8 @@ public class Pantalla_login extends javax.swing.JFrame {
 
     private boolean verificacionesOpcionales() {
         String correo = textField_correo.getText();
-        if (correo != null) {
+        
+        if (!correo.equals("")) {
             if (Metodos.verificarCorreo(correo)) {
                 return true;
             } else {
@@ -614,6 +615,26 @@ public class Pantalla_login extends javax.swing.JFrame {
             }
         }
         return true;
+    }
+
+    private String crearFecha(Date date) {
+        String fecha = "";
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            fecha = sdf.format(date);
+        } catch (NullPointerException ex){
+            return "01.01.2000";
+        }
+        return fecha;
+    }
+    
+    private void guardar(Usuario user){
+        if (BaseDatos.guardar(user)) {
+                JOptionPane.showMessageDialog(frame_agregar, "El usuario ha sido creado");
+                frame_agregar.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(frame_agregar, "No se ha podido agregar al usuario.", "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
+            }
     }
 
     public static void main(String args[]) {
