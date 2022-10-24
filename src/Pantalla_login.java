@@ -521,7 +521,7 @@ public class Pantalla_login extends javax.swing.JFrame {
 
     private void boton_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_agregarActionPerformed
         Usuario user = null;
-        
+
         String usuario = textField_agregarUsuario.getText();
         String contraseña = textField_agregarContra.getText();
         String nombre = textField_nombre.getText();
@@ -547,7 +547,7 @@ public class Pantalla_login extends javax.swing.JFrame {
             } else {
                 user = new Usuario(usuario, contraseña);
                 guardar(user);
-            }            
+            }
         }
     }//GEN-LAST:event_boton_agregarActionPerformed
 
@@ -559,6 +559,8 @@ public class Pantalla_login extends javax.swing.JFrame {
         if (BaseDatos.modificarContraseña(textField_usuario.getText(), textField_nuevaContra.getText())) {
             JOptionPane.showMessageDialog(frame_agregar, "La contraseña ha sido modificada");
             frame_cambiarContra.dispose();
+            frame_principal.dispose();
+            this.setVisible(true);
         }
     }//GEN-LAST:event_boton_aceptarActionPerformed
 
@@ -605,7 +607,7 @@ public class Pantalla_login extends javax.swing.JFrame {
 
     private boolean verificacionesOpcionales() {
         String correo = textField_correo.getText();
-        
+
         if (!correo.equals("")) {
             if (Metodos.verificarCorreo(correo)) {
                 return true;
@@ -619,22 +621,22 @@ public class Pantalla_login extends javax.swing.JFrame {
 
     private String crearFecha(Date date) {
         String fecha = "";
-        try{
+        try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             fecha = sdf.format(date);
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             return "01.01.2000";
         }
         return fecha;
     }
-    
-    private void guardar(Usuario user){
+
+    private void guardar(Usuario user) {
         if (BaseDatos.guardar(user)) {
-                JOptionPane.showMessageDialog(frame_agregar, "El usuario ha sido creado");
-                frame_agregar.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(frame_agregar, "No se ha podido agregar al usuario.", "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(frame_agregar, "El usuario ha sido creado");
+            frame_agregar.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(frame_agregar, "No se ha podido agregar al usuario.", "Error en la base de datos", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public static void main(String args[]) {
