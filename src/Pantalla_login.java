@@ -21,7 +21,7 @@ public class Pantalla_login extends javax.swing.JFrame {
         label_logo = new javax.swing.JLabel();
         boton_cerrarSesion = new javax.swing.JButton();
         etiqueta_info = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        boton_nuevoUser = new javax.swing.JButton();
         boton_cambiar = new javax.swing.JButton();
         frame_agregar = new javax.swing.JFrame();
         panel_agregar = new javax.swing.JPanel();
@@ -45,10 +45,18 @@ public class Pantalla_login extends javax.swing.JFrame {
         boton_agregar = new javax.swing.JButton();
         dateChooser_fecha = new com.toedter.calendar.JDateChooser();
         frame_cambiarContra = new javax.swing.JFrame();
-        textField_nuevaContra = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         boton_cancelar = new javax.swing.JButton();
         boton_aceptar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        PassField_contraAct = new javax.swing.JPasswordField();
+        passField_nueva2 = new javax.swing.JPasswordField();
+        passField_nueva = new javax.swing.JPasswordField();
+        checkBox_mostrarContraNueva = new javax.swing.JCheckBox();
+        checkBox_mostrarContraAct = new javax.swing.JCheckBox();
+        checkBox_mostrarContraNueva2 = new javax.swing.JCheckBox();
         panel_login = new javax.swing.JPanel();
         label_instrucciones = new javax.swing.JLabel();
         label_usuario = new javax.swing.JLabel();
@@ -62,7 +70,6 @@ public class Pantalla_login extends javax.swing.JFrame {
         frame_principal.setTitle("Principal");
         frame_principal.setLocationRelativeTo(null);
         frame_principal.setAlwaysOnTop(true);
-        frame_principal.setPreferredSize(new java.awt.Dimension(392, 320));
         frame_principal.setResizable(false);
         frame_principal.setSize(new java.awt.Dimension(392, 330));
 
@@ -84,11 +91,11 @@ public class Pantalla_login extends javax.swing.JFrame {
         etiqueta_info.setText("El usuario  está logueado");
         etiqueta_info.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Nuevo usuario");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton_nuevoUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        boton_nuevoUser.setText("Nuevo usuario");
+        boton_nuevoUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                boton_nuevoUserActionPerformed(evt);
             }
         });
 
@@ -122,7 +129,7 @@ public class Pantalla_login extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_principalLayout.createSequentialGroup()
                         .addGroup(panel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(boton_cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boton_nuevoUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(boton_cambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15))))
         );
@@ -138,7 +145,7 @@ public class Pantalla_login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(boton_cambiar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(boton_nuevoUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boton_cerrarSesion)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -326,14 +333,15 @@ public class Pantalla_login extends javax.swing.JFrame {
             .addComponent(panel_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        frame_cambiarContra.setPreferredSize(new java.awt.Dimension(352, 180));
+        frame_cambiarContra.setPreferredSize(new java.awt.Dimension(500, 260));
         frame_cambiarContra.setLocationRelativeTo(null);
         frame_cambiarContra.setResizable(false);
-        frame_cambiarContra.setSize(new java.awt.Dimension(352, 180));
+        frame_cambiarContra.setSize(new java.awt.Dimension(500, 260));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Por favor, introduce la nueva contraseña");
 
+        boton_cancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         boton_cancelar.setText("Cancelar");
         boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,6 +349,7 @@ public class Pantalla_login extends javax.swing.JFrame {
             }
         });
 
+        boton_aceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         boton_aceptar.setText("Aceptar");
         boton_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,34 +357,103 @@ public class Pantalla_login extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Nueva contraseña:");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Repetir nueva contraseña:");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setText("Contraseña actual:");
+
+        PassField_contraAct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        passField_nueva2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        passField_nueva.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        checkBox_mostrarContraNueva.setText("Mostrar");
+        checkBox_mostrarContraNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox_mostrarContraNuevaActionPerformed(evt);
+            }
+        });
+
+        checkBox_mostrarContraAct.setText("Mostrar");
+        checkBox_mostrarContraAct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox_mostrarContraActActionPerformed(evt);
+            }
+        });
+
+        checkBox_mostrarContraNueva2.setText("Mostrar");
+        checkBox_mostrarContraNueva2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBox_mostrarContraNueva2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout frame_cambiarContraLayout = new javax.swing.GroupLayout(frame_cambiarContra.getContentPane());
         frame_cambiarContra.getContentPane().setLayout(frame_cambiarContraLayout);
         frame_cambiarContraLayout.setHorizontalGroup(
             frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frame_cambiarContraLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frame_cambiarContraLayout.createSequentialGroup()
                 .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(frame_cambiarContraLayout.createSequentialGroup()
-                            .addComponent(boton_cancelar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(boton_aceptar))
-                        .addComponent(textField_nuevaContra, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(frame_cambiarContraLayout.createSequentialGroup()
+                        .addContainerGap(39, Short.MAX_VALUE)
+                        .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel11))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passField_nueva2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PassField_contraAct, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passField_nueva, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(frame_cambiarContraLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(frame_cambiarContraLayout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(frame_cambiarContraLayout.createSequentialGroup()
+                                .addComponent(boton_cancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(boton_aceptar)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBox_mostrarContraAct, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkBox_mostrarContraNueva2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkBox_mostrarContraNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
         frame_cambiarContraLayout.setVerticalGroup(
             frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frame_cambiarContraLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(textField_nuevaContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(PassField_contraAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkBox_mostrarContraNueva))
+                .addGap(18, 18, 18)
+                .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(passField_nueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(checkBox_mostrarContraAct)))
+                .addGap(18, 18, 18)
+                .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(passField_nueva2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkBox_mostrarContraNueva2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(frame_cambiarContraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_cancelar)
                     .addComponent(boton_aceptar))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -484,11 +562,7 @@ public class Pantalla_login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkBox_mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_mostrarActionPerformed
-        if (checkBox_mostrar.isSelected()) {
-            passwordField.setEchoChar((char) 0);
-        } else {
-            passwordField.setEchoChar('\u2022');
-        }
+        mostrar(checkBox_mostrar, passwordField);
     }//GEN-LAST:event_checkBox_mostrarActionPerformed
 
     private void boton_logActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_logActionPerformed
@@ -551,27 +625,53 @@ public class Pantalla_login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boton_agregarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void boton_nuevoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_nuevoUserActionPerformed
         frame_agregar.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void boton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_aceptarActionPerformed
-        if (BaseDatos.modificarContraseña(textField_usuario.getText(), textField_nuevaContra.getText())) {
-            JOptionPane.showMessageDialog(frame_agregar, "La contraseña ha sido modificada");
-            frame_cambiarContra.dispose();
-            frame_principal.dispose();
-            this.setVisible(true);
-        }
-    }//GEN-LAST:event_boton_aceptarActionPerformed
+    }//GEN-LAST:event_boton_nuevoUserActionPerformed
 
     private void boton_cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cambiarActionPerformed
         frame_principal.setVisible(false);
         frame_cambiarContra.setVisible(true);
     }//GEN-LAST:event_boton_cambiarActionPerformed
 
+    private void boton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_aceptarActionPerformed
+        String user = textField_usuario.getText();
+        String contraAct = String.valueOf(PassField_contraAct.getPassword());
+        String contra1 = String.valueOf(passField_nueva.getPassword());
+        String contra2 = String.valueOf(passField_nueva2.getPassword());
+
+        if (BaseDatos.consultar(user, contraAct)){
+            if (Metodos.verificarDobleContra(contra1, contra2)) {
+                if (BaseDatos.modificarContraseña(user, contra1)) {
+                    JOptionPane.showMessageDialog(frame_agregar, "La contraseña ha sido modificada");
+                    frame_cambiarContra.dispose();
+                    frame_principal.dispose();
+                    this.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame_agregar, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+            }             
+        } else {
+            JOptionPane.showMessageDialog(frame_agregar, "Contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_boton_aceptarActionPerformed
+
     private void boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelarActionPerformed
+        frame_principal.setVisible(true);
         frame_cambiarContra.dispose();
     }//GEN-LAST:event_boton_cancelarActionPerformed
+
+    private void checkBox_mostrarContraNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_mostrarContraNuevaActionPerformed
+        mostrar(checkBox_mostrarContraNueva, PassField_contraAct);
+    }//GEN-LAST:event_checkBox_mostrarContraNuevaActionPerformed
+
+    private void checkBox_mostrarContraActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_mostrarContraActActionPerformed
+        mostrar(checkBox_mostrarContraAct, passField_nueva);
+    }//GEN-LAST:event_checkBox_mostrarContraActActionPerformed
+
+    private void checkBox_mostrarContraNueva2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBox_mostrarContraNueva2ActionPerformed
+        mostrar(checkBox_mostrarContraNueva2, passField_nueva2);
+    }//GEN-LAST:event_checkBox_mostrarContraNueva2ActionPerformed
 
     private boolean verificaciones() {
         String usuario = textField_agregarUsuario.getText();
@@ -639,6 +739,14 @@ public class Pantalla_login extends javax.swing.JFrame {
         }
     }
 
+    private void mostrar(JCheckBox checkBox, JPasswordField password) {
+        if (checkBox.isSelected()) {
+            password.setEchoChar((char) 0);
+        } else {
+            password.setEchoChar('\u2022');
+        }
+    }
+
     public static void main(String args[]) {
         try {
             javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -663,14 +771,19 @@ public class Pantalla_login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PassField_contraAct;
     private javax.swing.JButton boton_aceptar;
     private javax.swing.JButton boton_agregar;
     private javax.swing.JButton boton_cambiar;
     private javax.swing.JButton boton_cancelar;
     private javax.swing.JButton boton_cerrarSesion;
     private javax.swing.JButton boton_log;
+    private javax.swing.JButton boton_nuevoUser;
     private javax.swing.JButton boton_volver;
     private javax.swing.JCheckBox checkBox_mostrar;
+    private javax.swing.JCheckBox checkBox_mostrarContraAct;
+    private javax.swing.JCheckBox checkBox_mostrarContraNueva;
+    private javax.swing.JCheckBox checkBox_mostrarContraNueva2;
     private com.toedter.calendar.JDateChooser dateChooser_fecha;
     private javax.swing.JLabel etiqueta_bienvenido;
     private javax.swing.JLabel etiqueta_click;
@@ -679,8 +792,10 @@ public class Pantalla_login extends javax.swing.JFrame {
     private javax.swing.JFrame frame_agregar;
     private javax.swing.JFrame frame_cambiarContra;
     private javax.swing.JFrame frame_principal;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -697,6 +812,8 @@ public class Pantalla_login extends javax.swing.JFrame {
     private javax.swing.JPanel panel_agregar;
     private javax.swing.JPanel panel_login;
     private javax.swing.JPanel panel_principal;
+    private javax.swing.JPasswordField passField_nueva;
+    private javax.swing.JPasswordField passField_nueva2;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField textField_agregarContra;
     private javax.swing.JTextField textField_agregarContra2;
@@ -704,7 +821,6 @@ public class Pantalla_login extends javax.swing.JFrame {
     private javax.swing.JTextField textField_apellidos;
     private javax.swing.JTextField textField_correo;
     private javax.swing.JTextField textField_nombre;
-    private javax.swing.JTextField textField_nuevaContra;
     private javax.swing.JTextField textField_usuario;
     // End of variables declaration//GEN-END:variables
 }
